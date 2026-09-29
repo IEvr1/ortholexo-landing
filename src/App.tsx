@@ -1,4 +1,5 @@
 import Audience from "./components/Audience";
+import Contact from "./components/Contact";
 import FAQ from "./components/FAQ";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
@@ -18,6 +19,7 @@ export default function App() {
         <HowItWorks />
         <Pricing />
         <FAQ />
+        <Contact />
       </main>
       <Footer />
     </>

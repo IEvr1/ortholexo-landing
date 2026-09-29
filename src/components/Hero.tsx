@@ -1,11 +1,12 @@
 import { APP_URL } from "../config";
+import Logo from "./Logo";
 
 export default function Hero() {
   return (
     <section className="hero">
       <div className="container hero__content">
-        <p className="hero__eyebrow">Εκμάθηση ελληνικής ορθογραφίας</p>
-        <h1 className="hero__title">Μάθε να γράφεις σωστά!</h1>
+        <Logo className="hero__logo" width={320} height={320} />
+        <h1 className="visually-hidden">Ορθόλεξο — Μάθε να γράφεις σωστά!</h1>
         <p className="hero__subtitle">
           Διαδραστική εξάσκηση για μαθητές <strong>Β΄–Στ΄</strong> Δημοτικού, με 12
           τρόπους παιχνιδιού, έξυπνη επανάληψη και αναφορές για γονείς.
