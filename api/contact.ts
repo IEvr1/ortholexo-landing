@@ -94,7 +94,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const to = process.env.CONTACT_TO?.trim() || "info@nexaipla.com";
-  const from = process.env.CONTACT_FROM?.trim() || "onboarding@resend.dev";
+  const from = process.env.CONTACT_FROM?.trim() || "info@nexaipla.com";
 
   const text = [
     "Νέο μήνυμα από τη φόρμα επικοινωνίας του ortholexo.gr",
