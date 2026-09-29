@@ -7,8 +7,8 @@ export default function Audience() {
           <article className="card">
             <h3 className="card__title">Μαθητές Β΄–Στ΄</h3>
             <p className="card__text">
-              Περιεχόμενο ευθυγραμμισμένο με το σχολικό πρόγραμμα (ΚΝΕ). Κάθε τάξη
-              έχει τις δικές της λέξεις και κανόνες ορθογραφίας.
+              Κάθε τάξη έχει τις δικές της λέξεις και κανόνες ορθογραφίας,
+              προσαρμοσμένα στον βαθμό δυσκολίας της.
             </p>
           </article>
           <article className="card">
@@ -21,8 +21,8 @@ export default function Audience() {
           <article className="card">
             <h3 className="card__title">Ασφαλές περιβάλλον</h3>
             <p className="card__text">
-              Χωρίς διαφημίσεις για παιδιά. Πληρωμή με ασφάλεια μέσω Stripe. Τα
-              δεδομένα προόδου συγχρονίζονται στο cloud.
+              Χωρίς διαφημίσεις για παιδιά. Τα δεδομένα προόδου συγχρονίζονται ανάμεσα
+              σε διαφορετικές συσκευές. Πληρωμή με ασφάλεια μέσω Stripe.
             </p>
           </article>
         </div>

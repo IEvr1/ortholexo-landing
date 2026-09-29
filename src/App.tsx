@@ -2,6 +2,7 @@ import Audience from "./components/Audience";
 import Contact from "./components/Contact";
 import FAQ from "./components/FAQ";
 import Features from "./components/Features";
+import PracticeModes from "./components/PracticeModes";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -16,6 +17,7 @@ export default function App() {
         <Hero />
         <Audience />
         <Features />
+        <PracticeModes />
         <HowItWorks />
         <Pricing />
         <FAQ />
