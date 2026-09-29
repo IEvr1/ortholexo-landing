@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="ŸÁ¸Ì»µ¾¿">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B4F72"/>
+      <stop offset="100%" stop-color="#6BA3D4"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F3F6FA"/>
+      <stop offset="100%" stop-color="#DCE4EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#sand)"/>
+  <circle cx="1050" cy="80" r="180" fill="rgba(107,163,212,0.15)"/>
+  <circle cx="120" cy="550" r="140" fill="rgba(27,79,114,0.08)"/>
+  <rect x="80" y="140" width="120" height="120" rx="24" fill="url(#bg)"/>
+  <rect x="104" y="228" width="72" height="10" rx="4" fill="#F5C842"/>
+  <text x="140" y="225" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="68" font-weight="700" fill="#fff">&#927;</text>
+  <text x="230" y="195" font-family="Fredoka, sans-serif" font-size="72" font-weight="700" fill="#0F2744">ŸÁ¸Ì»µ¾¿</text>
+  <text x="230" y="260" font-family="Source Sans 3, sans-serif" font-size="36" font-weight="500" fill="#4A6280">œ¬¸µ ½± ³Á¬Æµ¹Â ÃÉÃÄ¬!</text>
+  <text x="230" y="330" font-family="Source Sans 3, sans-serif" font-size="28" fill="#4A6280">•º¼¬¸·Ã· µ»»·½¹º®Â ¿Á¸¿³Á±Æ¯±Â · ’„£Ä„ ”·¼¿Ä¹º¿Í</text>
+  <rect x="230" y="380" width="320" height="56" rx="28" fill="#F5C842"/>
+  <text x="390" y="418" text-anchor="middle" font-family="Source Sans 3, sans-serif" font-size="26" font-weight="700" fill="#0F2744">5 ·¼­ÁµÂ ´ÉÁµ¬½</text>
+  <text x="980" y="580" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="22" fill="#7A8FA3">ortholexo.gr · NexAIpla</text>
+</svg>
