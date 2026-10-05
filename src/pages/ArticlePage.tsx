@@ -66,7 +66,6 @@ export default function ArticlePage() {
               <span>{article.title}</span>
             </p>
             <header className="article-page__header">
-              <time dateTime={article.date}>{formatDate(article.date)}</time>
               <h1 className="article-page__title">{article.title}</h1>
               <p className="article-page__lead">{article.description}</p>
             </header>
@@ -85,13 +84,4 @@ export default function ArticlePage() {
       <Footer />
     </>
   );
-}
-
-function formatDate(iso: string): string {
-  const d = new Date(`${iso}T12:00:00`);
-  return new Intl.DateTimeFormat("el-GR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(d);
 }

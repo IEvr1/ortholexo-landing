@@ -19,9 +19,14 @@ export default function Header() {
           <Link to="/articles">Άρθρα</Link>
           <a href={onHome ? "#contact" : "/#contact"}>Επικοινωνία</a>
         </nav>
-        <a href={APP_URL} className="btn btn-primary btn-sm">
-          Ξεκίνα
-        </a>
+        <div className="site-header__actions">
+          <Link to="/articles" className="site-header__articles-mobile">
+            Άρθρα
+          </Link>
+          <a href={APP_URL} className="btn btn-primary btn-sm">
+            Ξεκίνα
+          </a>
+        </div>
       </div>
     </header>
   );
