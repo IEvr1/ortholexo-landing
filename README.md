@@ -100,6 +100,27 @@ Privacy, Terms, and Contact live on the **app** (single source of truth):
 
 The landing footer links to these URLs via `VITE_APP_URL`.
 
+## Articles (`/articles`)
+
+Markdown blog for SEO/promoting. No WordPress — native SEO at build time.
+
+1. Add `content/articles/my-slug.md` with frontmatter:
+
+```md
+---
+title: "Τίτλος άρθρου"
+description: "Σύντομη περιγραφή για SEO (meta description)."
+date: "2026-10-05"
+---
+
+Σώμα σε markdown...
+```
+
+2. Commit and push — Vercel runs `generate:articles` + prerender.
+3. Live at `https://ortholexo.gr/articles/my-slug`
+
+Each article gets unique title, description, canonical, Open Graph, Twitter cards, JSON-LD `BlogPosting`, and sitemap entry.
+
 ## Follow-up (outside this repo)
 
 1. **NexAIpla hub** — add card at `nexaipla.com/ortholexo` linking to `https://ortholexo.gr`

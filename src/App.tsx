@@ -1,29 +1,15 @@
-import Audience from "./components/Audience";
-import Contact from "./components/Contact";
-import FAQ from "./components/FAQ";
-import Features from "./components/Features";
-import PracticeModes from "./components/PracticeModes";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import HowItWorks from "./components/HowItWorks";
-import Pricing from "./components/Pricing";
+import { Route, Routes } from "react-router-dom";
+import ArticlePage from "./pages/ArticlePage";
+import ArticlesPage from "./pages/ArticlesPage";
+import HomePage from "./pages/HomePage";
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Audience />
-        <Features />
-        <PracticeModes />
-        <HowItWorks />
-        <Pricing />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/articles" element={<ArticlesPage />} />
+      <Route path="/articles/:slug" element={<ArticlePage />} />
+      <Route path="*" element={<HomePage />} />
+    </Routes>
   );
 }
