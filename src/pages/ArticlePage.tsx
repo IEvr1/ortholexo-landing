@@ -3,6 +3,7 @@ import { APP_URL, SITE_URL } from "../config";
 import { getArticle } from "../generated/articles";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ResourceBundle from "../components/ResourceBundle";
 import Seo from "../components/Seo";
 
 export default function ArticlePage() {
@@ -16,10 +17,12 @@ export default function ArticlePage() {
   const path = `/articles/${article.slug}`;
   const title = `${article.title} — Ορθόλεξο`;
   const url = `${SITE_URL}${path}`;
+  const ctaUrl = article.bundle?.premium.url ?? APP_URL;
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": article.bundle ? "LearningResource" : "BlogPosting",
+    name: article.title,
     headline: article.title,
     description: article.description,
     datePublished: article.date,
@@ -27,6 +30,10 @@ export default function ArticlePage() {
     url,
     image: `${SITE_URL}/og-image.png`,
     inLanguage: "el",
+    learningResourceType: article.bundle ? "practice problem" : undefined,
+    educationalLevel: article.bundle
+      ? `Δημοτικό ${article.bundle.grade}`
+      : undefined,
     author: {
       "@type": "Organization",
       name: "Ορθόλεξο",
@@ -58,7 +65,7 @@ export default function ArticlePage() {
       />
       <Header />
       <main>
-        <article className="section article-page">
+        <article className={`section article-page ${article.bundle ? "article-page--bundle" : ""}`}>
           <div className="container article-page__inner">
             <p className="article-page__crumb">
               <Link to="/articles">Άρθρα</Link>
@@ -70,13 +77,22 @@ export default function ArticlePage() {
               <h1 className="article-page__title">{article.title}</h1>
               <p className="article-page__lead">{article.description}</p>
             </header>
-            <div
-              className="article-page__body"
-              dangerouslySetInnerHTML={{ __html: article.html }}
-            />
+
+            {article.bundle && (
+              <ResourceBundle bundle={article.bundle} articleTitle={article.title} />
+            )}
+
+            <div className="article-page__parent">
+              <h2 className="article-page__parent-title">Οδηγός για γονείς</h2>
+              <div
+                className="article-page__body"
+                dangerouslySetInnerHTML={{ __html: article.html }}
+              />
+            </div>
+
             <p className="article-page__cta">
-              <a href={APP_URL} className="btn btn-primary">
-                Ξεκίνα δωρεάν
+              <a href={ctaUrl} className="btn btn-primary">
+                {article.bundle?.premium.cta ?? "Ξεκίνα δωρεάν"}
               </a>
             </p>
           </div>
