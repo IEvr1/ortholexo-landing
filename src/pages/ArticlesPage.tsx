@@ -48,12 +48,6 @@ export default function ArticlesPage() {
               <ul className="articles-list">
                 {articles.map((article) => (
                   <li key={article.slug} className="articles-list__item">
-                    <time
-                      className="articles-list__date"
-                      dateTime={article.date}
-                    >
-                      {formatDate(article.date)}
-                    </time>
                     <h2 className="articles-list__title">
                       <Link to={`/articles/${article.slug}`}>
                         {article.title}
@@ -78,13 +72,4 @@ export default function ArticlesPage() {
       <Footer />
     </>
   );
-}
-
-function formatDate(iso: string): string {
-  const d = new Date(`${iso}T12:00:00`);
-  return new Intl.DateTimeFormat("el-GR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(d);
 }

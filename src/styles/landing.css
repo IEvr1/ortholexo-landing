@@ -175,6 +175,31 @@ a:hover {
   }
 }
 
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+}
+
+.site-header__articles-mobile {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.site-header__articles-mobile:hover {
+  color: var(--teal);
+}
+
+@media (min-width: 768px) {
+  .site-header__articles-mobile {
+    display: none;
+  }
+}
+
 /* Hero */
 .hero {
   padding: 3rem 0 4rem;
