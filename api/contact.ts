@@ -93,8 +93,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(503).json({ error: "email service unavailable" });
   }
 
-  const to = process.env.CONTACT_TO?.trim() || "info@nexaipla.com";
-  const from = process.env.CONTACT_FROM?.trim() || "info@nexaipla.com";
+  const to = process.env.CONTACT_TO?.trim() || "support@nexaipla.com";
+  const from =
+    process.env.CONTACT_FROM?.trim() ||
+    "Ορθόλεξο <contact@mail.nexaipla.com>";
+  const subject = `[Ορθόλεξο] Μήνυμα από ${name}`;
 
   const text = [
     "Νέο μήνυμα από τη φόρμα επικοινωνίας του ortholexo.gr",
@@ -119,7 +122,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         from,
         to: [to],
         reply_to: email,
-        subject: `[Ορθόλεξο] Μήνυμα από ${name}`,
+        subject,
         text,
       }),
     });
@@ -130,9 +133,50 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(502).json({ error: "failed to send email" });
     }
 
+    await queueContactForEmailMarketing({ name, email, message, subject });
+
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("[contact]", err);
     return res.status(500).json({ error: "internal error" });
+  }
+}
+
+/** Same reply pipeline as EmailMarketing: Cursor drafts → /replies approve. */
+async function queueContactForEmailMarketing(opts: {
+  name: string;
+  email: string;
+  message: string;
+  subject: string;
+}) {
+  const base = process.env.EMAIL_MARKETING_URL?.replace(/\/$/, "");
+  const secret = process.env.EMAIL_MARKETING_HOOK_SECRET?.trim();
+  if (!base || !secret) return;
+
+  try {
+    const response = await fetch(`${base}/api/webhooks/contact`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productSlug: process.env.EMAIL_MARKETING_PRODUCT_SLUG ?? "ortholexo",
+        fromEmail: opts.email,
+        externalUser: opts.name,
+        bodyText: opts.message,
+        subject: opts.subject,
+        source: "ortholexo_contact_form",
+      }),
+    });
+    if (!response.ok) {
+      console.error(
+        "[contact] EmailMarketing ingest failed:",
+        response.status,
+        await response.text(),
+      );
+    }
+  } catch (err) {
+    console.error("[contact] EmailMarketing ingest error:", err);
   }
 }
