@@ -44,7 +44,15 @@ Output: `dist/`
 6. Environment variables (Production):
    - `VITE_SITE_URL=https://ortholexo.gr`
    - `VITE_APP_URL=https://app.ortholexo.gr`
+   - `RESEND_API_KEY` — Resend key for `mail.nexaipla.com`
+   - `CONTACT_TO=support@nexaipla.com` — notification inbox
+   - `CONTACT_FROM=Ορθόλεξο <contact@mail.nexaipla.com>`
+   - `EMAIL_MARKETING_URL=https://marketing.ortholexo.gr`
+   - `EMAIL_MARKETING_HOOK_SECRET` — same as EmailMarketing `CONTACT_INGEST_SECRET`
+   - `EMAIL_MARKETING_PRODUCT_SLUG=ortholexo`
 7. Domains: `ortholexo.gr`, `www.ortholexo.gr`
+
+Contact form (`POST /api/contact`): visitor message is emailed to `CONTACT_TO` via Resend, then queued to EmailMarketing `/api/webhooks/contact` for Cursor drafts → `/replies`.
 
 ## Vercel — Project B (app, existing Orthographia)
 
