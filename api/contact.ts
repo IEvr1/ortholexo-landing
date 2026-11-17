@@ -6,6 +6,27 @@ const MAX_EMAIL = 254;
 const MAX_MESSAGE = 4000;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 5;
+const SUPPORT_INBOX = "support@nexaipla.com";
+const VERIFIED_SENDER = "Ορθόλεξο <contact@mail.nexaipla.com>";
+const LEGACY_ADDRESS = "info@nexaipla.com";
+
+function addressOf(value: string): string {
+  const match = value.match(/<([^>]+)>/);
+  return (match?.[1] ?? value).trim().toLowerCase();
+}
+
+/** Production still has the old info@ values; those must not override the new inbox. */
+function contactInbox(raw: string | undefined): string {
+  const value = raw?.trim();
+  if (!value || addressOf(value) === LEGACY_ADDRESS) return SUPPORT_INBOX;
+  return value;
+}
+
+function contactSender(raw: string | undefined): string {
+  const value = raw?.trim();
+  if (!value || addressOf(value) === LEGACY_ADDRESS) return VERIFIED_SENDER;
+  return value;
+}
 
 const recentByIp = new Map<string, number[]>();
 
@@ -93,10 +114,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(503).json({ error: "email service unavailable" });
   }
 
-  const to = process.env.CONTACT_TO?.trim() || "support@nexaipla.com";
-  const from =
-    process.env.CONTACT_FROM?.trim() ||
-    "Ορθόλεξο <contact@mail.nexaipla.com>";
+  const to = contactInbox(process.env.CONTACT_TO);
+  const from = contactSender(process.env.CONTACT_FROM);
   const subject = `[Ορθόλεξο] Μήνυμα από ${name}`;
 
   const text = [
