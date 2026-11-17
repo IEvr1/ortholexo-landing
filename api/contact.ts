@@ -6,25 +6,25 @@ const MAX_EMAIL = 254;
 const MAX_MESSAGE = 4000;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX = 5;
-const SUPPORT_INBOX = "support@nexaipla.com";
+const CONTACT_INBOX = "contact@nexaipla.com";
 const VERIFIED_SENDER = "Ορθόλεξο <contact@mail.nexaipla.com>";
-const LEGACY_ADDRESS = "info@nexaipla.com";
+const LEGACY_ADDRESSES = new Set(["info@nexaipla.com", "support@nexaipla.com"]);
 
 function addressOf(value: string): string {
   const match = value.match(/<([^>]+)>/);
   return (match?.[1] ?? value).trim().toLowerCase();
 }
 
-/** Production still has the old info@ values; those must not override the new inbox. */
+/** Production may still have info@ or support@; those go to the current inbox. */
 function contactInbox(raw: string | undefined): string {
   const value = raw?.trim();
-  if (!value || addressOf(value) === LEGACY_ADDRESS) return SUPPORT_INBOX;
+  if (!value || LEGACY_ADDRESSES.has(addressOf(value))) return CONTACT_INBOX;
   return value;
 }
 
 function contactSender(raw: string | undefined): string {
   const value = raw?.trim();
-  if (!value || addressOf(value) === LEGACY_ADDRESS) return VERIFIED_SENDER;
+  if (!value || addressOf(value) === "info@nexaipla.com") return VERIFIED_SENDER;
   return value;
 }
 

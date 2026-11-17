@@ -45,7 +45,7 @@ Output: `dist/`
    - `VITE_SITE_URL=https://ortholexo.gr`
    - `VITE_APP_URL=https://app.ortholexo.gr`
    - `RESEND_API_KEY` — Resend key for `mail.nexaipla.com`
-   - `CONTACT_TO=support@nexaipla.com` — notification inbox
+   - `CONTACT_TO=contact@nexaipla.com` — notification inbox
    - `CONTACT_FROM=Ορθόλεξο <contact@mail.nexaipla.com>`
    - `EMAIL_MARKETING_URL=https://marketing.ortholexo.gr`
    - `EMAIL_MARKETING_HOOK_SECRET` — same as EmailMarketing `CONTACT_INGEST_SECRET`
