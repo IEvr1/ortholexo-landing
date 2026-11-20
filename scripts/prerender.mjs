@@ -74,11 +74,62 @@ function replaceMeta(html, { title, description, url, type, jsonLd }) {
   return out;
 }
 
+const HOME_FAQ = [
+  [
+    "Για ποιες τάξεις είναι το Ορθόλεξο;",
+    "Για μαθητές Β΄, Γ΄, Δ΄, Ε΄ και Στ΄ Δημοτικού. Η Α΄ τάξη δεν υποστηρίζεται ακόμα.",
+  ],
+  [
+    "Πώς λειτουργεί η δωρεάν δοκιμή;",
+    "Με την εγγραφή γονέα αποκτάς 5 ημέρες πλήρους πρόσβασης. Μετά μπορείς να επιλέξεις συνδρομή ή να σταματήσεις.",
+  ],
+  [
+    "Μπορώ να ακυρώσω τη συνδρομή;",
+    "Ναι. Στο μηνιαίο πλάνο η ακύρωση γίνεται ανά πάσα στιγμή μέσα από τον λογαριασμό σου.",
+  ],
+  [
+    "Λειτουργεί σε tablet και κινητό;",
+    "Ναι. Το Ορθόλεξο είναι web εφαρμογή (PWA) — λειτουργεί σε browser και συγχρονίζει την πρόοδο σε όλες τις συσκευές.",
+  ],
+  [
+    "Πώς προστατεύονται τα δεδομένα του παιδιού;",
+    "Απαιτείται συναίνεση γονέα (GDPR). Δες την Πολιτική Απορρήτου στην εφαρμογή για λεπτομέρειες.",
+  ],
+];
+
+function homeBody() {
+  const faq = HOME_FAQ.map(
+    ([q, a]) => `<h3>${escapeHtml(q)}</h3><p>${escapeHtml(a)}</p>`,
+  ).join("");
+  return `<main id="crawler-prerender" lang="el"><h1>Ορθόλεξο — μάθε να γράφεις σωστά</h1><p>Διαδραστική εξάσκηση ελληνικής ορθογραφίας για μαθητές Β΄–Στ΄ Δημοτικού, με 12 τρόπους παιχνιδιού, έξυπνη επανάληψη και αναφορές για γονείς. Οι πρώτες 5 ημέρες είναι δωρεάν.</p><ul><li><strong>Premium — 1 παιδί</strong> 49€ τον χρόνο.</li><li><strong>Premium — μηνιαία</strong> 5,90€ τον μήνα, με ακύρωση ανά πάσα στιγμή.</li><li><strong>Οικογενειακό</strong> 69€ τον χρόνο, για έως 3 παιδιά.</li></ul><h2>Συχνές ερωτήσεις</h2>${faq}</main>`;
+}
+
+function faqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: HOME_FAQ.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
 function injectBody(html, bodyInner) {
   return html.replace(
-    /<div id="root"><\/div>/,
+    /<div id="root">\s*(?:<main id="crawler-prerender">[\s\S]*?<\/main>\s*)?<\/div>/,
     `<div id="root">${bodyInner}</div>`,
   );
+}
+
+function wordListHtml(article) {
+  const words = article.bundle?.words;
+  if (!Array.isArray(words) || words.length === 0) return "";
+  const items = words
+    .map((entry) => `<li>${escapeHtml(entry.word)}</li>`)
+    .join("");
+  return `<h2>Οι ${words.length} λέξεις</h2><ul>${items}</ul>`;
 }
 
 function writeRoute(relativeDir, html) {
@@ -99,6 +150,18 @@ async function main() {
     a.date < b.date ? 1 : -1,
   );
   const template = readFileSync(templatePath, "utf8");
+
+  let homeHtml = injectBody(template, homeBody());
+  const faqScript = `<script type="application/ld+json" id="crawler-faq">${JSON.stringify(faqJsonLd())}</script>`;
+  if (homeHtml.includes('id="crawler-faq"')) {
+    homeHtml = homeHtml.replace(
+      /<script type="application\/ld\+json" id="crawler-faq">[\s\S]*?<\/script>/,
+      faqScript,
+    );
+  } else {
+    homeHtml = homeHtml.replace("</head>", `    ${faqScript}\n  </head>`);
+  }
+  writeFileSync(templatePath, homeHtml, "utf8");
 
   const listTitle = "Άρθρα — Ορθόλεξο";
   const listDescription =
@@ -165,7 +228,7 @@ async function main() {
     });
     page = injectBody(
       page,
-      `<article class="article-prerender"><h1>${escapeHtml(article.title)}</h1><time datetime="${article.date}">${article.date}</time>${article.html}</article>`,
+      `<article class="article-prerender"><h1>${escapeHtml(article.title)}</h1><time datetime="${article.date}">${article.date}</time>${article.html}${wordListHtml(article)}</article>`,
     );
     writeRoute(join("articles", article.slug), page);
   }
