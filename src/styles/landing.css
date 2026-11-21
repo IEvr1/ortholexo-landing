@@ -1267,3 +1267,76 @@ a:hover {
     grid-column: 2;
   }
 }
+
+/* Related guides (knowledge-base links on landing) */
+.related-guides__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .related-guides__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-guides__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.related-guides__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--sand);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.related-guides__link:hover {
+  border-color: var(--sky);
+  box-shadow: var(--shadow);
+}
+
+.related-guides__link-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.related-guides__link-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.related-guides__all {
+  margin: 1.5rem 0 0;
+  text-align: center;
+}
+
+.related-guides__all a {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.related-guides__all a:hover {
+  text-decoration: underline;
+}

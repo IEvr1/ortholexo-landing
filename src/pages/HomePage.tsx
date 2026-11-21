@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import Pricing from "../components/Pricing";
+import RelatedGuides from "../components/RelatedGuides";
 import Seo from "../components/Seo";
 import { SITE_URL } from "../config";
 
@@ -55,7 +56,9 @@ export default function HomePage() {
         <Features />
         <PracticeModes />
         <HowItWorks />
+        <RelatedGuides context="parents" />
         <Pricing />
+        <RelatedGuides context="home" />
         <FAQ />
         <Contact />
       </main>
