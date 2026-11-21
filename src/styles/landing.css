@@ -878,8 +878,12 @@ a:hover {
 }
 
 .article-page__header time {
-  display: block;
-  margin-bottom: 0.75rem;
+  font-size: inherit;
+  color: inherit;
+}
+
+.article-page__meta {
+  margin: 0.75rem 0 0;
   font-size: 0.875rem;
   color: var(--ink-muted);
 }

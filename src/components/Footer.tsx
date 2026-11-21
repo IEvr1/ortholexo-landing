@@ -11,6 +11,8 @@ export default function Footer() {
       <div className="container site-footer__inner">
         <Logo className="site-footer__logo" width={88} height={88} />
         <nav className="site-footer__nav" aria-label="Υποσέλιδο">
+          <Link to="/faq">FAQ</Link>
+          <Link to="/ti-einai-to-ortholexo">Τι είναι το Ορθόλεξο</Link>
           <Link to="/articles">Άρθρα</Link>
           <a href={appPath("/privacy")}>Πολιτική Απορρήτου</a>
           <a href={appPath("/terms")}>Όροι Χρήσης</a>

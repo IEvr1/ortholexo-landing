@@ -15,7 +15,8 @@ export default function Header() {
         <nav className="site-header__nav" aria-label="Κύρια πλοήγηση">
           <a href={onHome ? "#features" : "/#features"}>Χαρακτηριστικά</a>
           <a href={onHome ? "#pricing" : "/#pricing"}>Τιμές</a>
-          <a href={onHome ? "#faq" : "/#faq"}>FAQ</a>
+          <Link to="/faq">FAQ</Link>
+          <Link to="/ti-einai-to-ortholexo">Τι είναι</Link>
           <Link to="/articles">Άρθρα</Link>
           <a href={onHome ? "#contact" : "/#contact"}>Επικοινωνία</a>
         </nav>

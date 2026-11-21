@@ -205,11 +205,15 @@ async function main() {
       headline: article.title,
       description: article.description,
       datePublished: article.date,
-      dateModified: article.date,
+      dateModified: article.updated ?? article.date,
       url,
       image: OG_IMAGE,
       inLanguage: "el",
-      author: { "@type": "Organization", name: "Ορθόλεξο", url: `${SITE_URL}/` },
+      author: {
+        "@type": "Organization",
+        name: article.author || "Ορθόλεξο",
+        url: `${SITE_URL}/`,
+      },
       publisher: {
         "@type": "Organization",
         name: "Ορθόλεξο",
@@ -228,7 +232,7 @@ async function main() {
     });
     page = injectBody(
       page,
-      `<article class="article-prerender"><h1>${escapeHtml(article.title)}</h1><time datetime="${article.date}">${article.date}</time>${article.html}${wordListHtml(article)}</article>`,
+      `<article class="article-prerender"><h1>${escapeHtml(article.title)}</h1><p class="article-prerender__meta">${escapeHtml(article.author || "Ορθόλεξο")} · Δημοσίευση <time datetime="${article.date}">${article.date}</time> · Τελευταία αναθεώρηση <time datetime="${article.updated ?? article.date}">${article.updated ?? article.date}</time></p>${article.html}${wordListHtml(article)}</article>`,
     );
     writeRoute(join("articles", article.slug), page);
   }

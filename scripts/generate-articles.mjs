@@ -33,6 +33,8 @@ function parseArticles() {
     const title = String(data.title ?? slug);
     const description = String(data.description ?? "");
     const date = String(data.date ?? new Date().toISOString().slice(0, 10));
+    const updated = String(data.updated ?? data.lastReviewed ?? date);
+    const author = String(data.author ?? "Ορθόλεξο");
     const html = marked.parse(content.trim(), { async: false });
     const bundle = data.bundle ?? undefined;
     const tags = Array.isArray(data.tags) ? data.tags : undefined;
@@ -42,6 +44,8 @@ function parseArticles() {
       title,
       description,
       date,
+      updated,
+      author,
       html: String(html),
       ...(bundle ? { bundle } : {}),
       ...(tags ? { tags } : {}),
@@ -59,6 +63,8 @@ function writeArticlesModule(articles) {
     title: ${JSON.stringify(a.title)},
     description: ${JSON.stringify(a.description)},
     date: ${JSON.stringify(a.date)},
+    updated: ${JSON.stringify(a.updated)},
+    author: ${JSON.stringify(a.author)},
     html: ${JSON.stringify(a.html)},${a.bundle ? `\n    bundle: ${JSON.stringify(a.bundle)},` : ""}${a.tags ? `\n    tags: ${JSON.stringify(a.tags)},` : ""}
   }`,
     )
@@ -94,6 +100,8 @@ export type Article = {
   title: string;
   description: string;
   date: string;
+  updated: string;
+  author: string;
   html: string;
   bundle?: ArticleBundle;
   tags?: string[];
@@ -121,6 +129,18 @@ function writeSitemap(articles) {
   const urls = [
     { loc: `${SITE_URL}/`, lastmod: today, changefreq: "weekly", priority: "1.0" },
     {
+      loc: `${SITE_URL}/faq`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.85",
+    },
+    {
+      loc: `${SITE_URL}/ti-einai-to-ortholexo`,
+      lastmod: today,
+      changefreq: "monthly",
+      priority: "0.9",
+    },
+    {
       loc: `${SITE_URL}/articles`,
       lastmod: today,
       changefreq: "weekly",
@@ -128,7 +148,7 @@ function writeSitemap(articles) {
     },
     ...articles.map((a) => ({
       loc: `${SITE_URL}/articles/${a.slug}`,
-      lastmod: a.date,
+      lastmod: a.updated || a.date,
       changefreq: "monthly",
       priority: a.bundle ? "0.85" : "0.7",
     })),

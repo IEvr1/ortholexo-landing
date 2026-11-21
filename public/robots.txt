@@ -1,4 +1,10 @@
+# Ortholexo crawler policy — see docs/seo-crawler-policy.md
+# Discovery crawlers allowed on public pages. GPTBot (training) blocked.
+
 User-agent: *
 Allow: /
+
+User-agent: GPTBot
+Disallow: /
 
 Sitemap: https://ortholexo.gr/sitemap.xml

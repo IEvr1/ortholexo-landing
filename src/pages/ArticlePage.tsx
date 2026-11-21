@@ -26,7 +26,7 @@ export default function ArticlePage() {
     headline: article.title,
     description: article.description,
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.updated ?? article.date,
     url,
     image: `${SITE_URL}/og-image.png`,
     inLanguage: "el",
@@ -36,7 +36,7 @@ export default function ArticlePage() {
       : undefined,
     author: {
       "@type": "Organization",
-      name: "Ορθόλεξο",
+      name: article.author || "Ορθόλεξο",
       url: `${SITE_URL}/`,
     },
     publisher: {
@@ -75,6 +75,15 @@ export default function ArticlePage() {
             <header className="article-page__header">
               <h1 className="article-page__title">{article.title}</h1>
               <p className="article-page__lead">{article.description}</p>
+              <p className="article-page__meta">
+                <span>{article.author || "Ορθόλεξο"}</span>
+                <span aria-hidden="true"> · </span>
+                <time dateTime={article.date}>Δημοσίευση {article.date}</time>
+                <span aria-hidden="true"> · </span>
+                <time dateTime={article.updated ?? article.date}>
+                  Τελευταία αναθεώρηση {article.updated ?? article.date}
+                </time>
+              </p>
             </header>
 
             {article.bundle && (
