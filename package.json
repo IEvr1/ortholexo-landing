@@ -28,6 +28,5 @@
     "react-dom": "^19.2.7",
     "react-helmet-async": "^3.0.0",
     "react-router-dom": "^7.18.4"
-  },
-  "rebuildStamp": "2026-11-21T19:08:34.520Z"
+  }
 }
