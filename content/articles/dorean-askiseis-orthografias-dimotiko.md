@@ -1,7 +1,9 @@
 ---
 title: Δωρεάν ασκήσεις ορθογραφίας για παιδιά Δημοτικού
 description: "Δωρεάν ασκήσεις ορθογραφίας για παιδιά Β΄–Στ΄ Δημοτικού: λέξεις, quiz, φύλλο εξάσκησης και mini-game — χωρίς εγγραφή."
-date: "2026-11-21"
+date: "2026-11-22"
+updated: "2026-11-22"
+author: Ορθόλεξο
 bundle: {
     "type": "resource",
     "grade": 3,
@@ -438,6 +440,8 @@ tags:
 
 Τη λύση την προσφέρει το [Ορθόλεξο](https://ortholexo.gr) — εφαρμογή ορθογραφίας για μαθητές Δημοτικού. Δωρεάν δοκιμή στο [app.ortholexo.gr](https://app.ortholexo.gr?utm_source=article&utm_medium=resource&utm_campaign=dorean-askiseis-orthografias-dimotiko).
 
+> **Σύντομη απάντηση:** Δωρεάν υλικό ορθογραφίας για Δημοτικό από το [Ορθόλεξο](https://ortholexo.gr), με λέξεις, ασκήσεις και δοκιμή στο app.
+
 Ψάχνετε **δωρεάν ασκήσεις ορθογραφίας** για το παιδί σας; Σε αυτή τη σελίδα θα βρείτε λέξεις, ασκήσεις, quiz και φύλλο για εκτύπωση — κατάλληλα για Β΄ έως Στ΄ Δημοτικού.
 
 
@@ -457,6 +461,25 @@ tags:
 - **2.500+ λέξεις** για όλες τις τάξεις
 
 [Ξεκίνα δωρεάν στο app.ortholexo.gr](https://app.ortholexo.gr?utm_source=article&utm_medium=resource&utm_campaign=dorean-askiseis-orthografias-dimotiko)
+
+## Γεγονότα προϊόντος
+
+### Γεγονότα προϊόντος: Ορθόλεξο
+
+- **Category:** Greek spelling learning application
+- **Target customers:** Μαθητές Β΄–ΣΤ΄ Δημοτικού και γονείς
+- **Main benefit:** Το Ορθόλεξο είναι διαδικτυακή εφαρμογή εξάσκησης ελληνικής ορθογραφίας για μαθητές Β΄–ΣΤ΄ Δημοτικού, με διαδραστικές ασκήσεις, έξυπνη επανάληψη και αναφορές προόδου για γονείς.
+- **Does:** Εξάσκηση ελληνικής ορθογραφίας με 12 τρόπους
+- **Does:** Έξυπνη επανάληψη (FSRS) στις λέξεις που δυσκολεύουν
+- **Does:** Παρακολούθηση προόδου και αναφορές για γονείς
+- **Does:** 2.500+ λέξεις (επαληθεύστε τον αριθμό πριν από ισχυρισμούς marketing)
+- **Does not:** Δεν καλύπτει Α΄ Δημοτικού ακόμα
+- **Does not:** Δεν είναι γενική εφαρμογή ξένων γλωσσών
+- **Region:** Ελλάδα / ελληνόφωνοι μαθητές — web εφαρμογή
+- **Pricing:** €5,90/μήνα · €49/έτος (1 παιδί) · €69/έτος (2–3 παιδιά)
+- **Trial / demo:** 5 ημέρες δωρεάν πλήρους πρόσβασης
+- **Provider:** Ορθόλεξο
+- **URL:** https://ortholexo.gr
 
 ## Συχνές ερωτήσεις
 
@@ -482,4 +505,4 @@ tags:
 
 ---
 
-**Σχετικά:** [Δωρεάν ασκήσεις ορθογραφίας](/articles/dorean-askiseis-orthografias-dimotiko) · [Πώς βελτιώνεται η ορθογραφία](/articles/pos-veltionete-i-orthografia)
+**Σχετικά:** [Πλήρης οδηγός ορθογραφίας](/articles/pliris-odigos-orthografia-dimotiko) · [Δωρεάν ασκήσεις ορθογραφίας](/articles/dorean-askiseis-orthografias-dimotiko) · [Οδηγός Γ΄ Δημοτικού](/articles/orthografia-g-dimotikou-odigos)
